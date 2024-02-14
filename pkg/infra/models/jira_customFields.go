@@ -7,6 +7,22 @@ import (
 
 type CustomFields struct{ Fields []map[string]interface{} }
 
+// In order to clear a field create an empty field which will wipe the value
+func (c *CustomFields) EmptyField(customFieldID string) (err error) {
+	if len(customFieldID) == 0 {
+		return fmt.Errorf("error, please provide a valid customFieldID value")
+	}
+
+	var fieldNode = map[string]interface{}{}
+	fieldNode[customFieldID] = nil
+
+	var fieldsNode = map[string]interface{}{}
+	fieldsNode["fields"] = fieldNode
+
+	c.Fields = append(c.Fields, fieldsNode)
+	return nil
+}
+
 func (c *CustomFields) Groups(customFieldID string, groups []string) (err error) {
 
 	if len(customFieldID) == 0 {
