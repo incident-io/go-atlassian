@@ -58,12 +58,13 @@ type ContentExtensionScheme struct {
 }
 
 type BodyScheme struct {
-	View                *BodyNodeScheme `json:"view,omitempty"`
-	ExportView          *BodyNodeScheme `json:"export_view,omitempty"`
-	StyledView          *BodyNodeScheme `json:"styled_view,omitempty"`
-	Storage             *BodyNodeScheme `json:"storage,omitempty"`
-	Editor2             *BodyNodeScheme `json:"editor2,omitempty"`
-	AnonymousExportView *BodyNodeScheme `json:"anonymous_export_view,omitempty"`
+	View                    *BodyNodeScheme `json:"view,omitempty"`
+	ExportView              *BodyNodeScheme `json:"export_view,omitempty"`
+	StyledView              *BodyNodeScheme `json:"styled_view,omitempty"`
+	Storage                 *BodyNodeScheme `json:"storage,omitempty"`
+	Editor2                 *BodyNodeScheme `json:"editor2,omitempty"`
+	AnonymousExportView     *BodyNodeScheme `json:"anonymous_export_view,omitempty"`
+	AtlassianDocumentFormat *BodyNodeScheme `json:"atlas_doc_format"`
 }
 
 type BodyNodeScheme struct {
