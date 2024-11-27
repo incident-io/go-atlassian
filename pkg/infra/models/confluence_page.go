@@ -73,10 +73,11 @@ type PageBodyScheme struct {
 
 // PageCreatePayloadScheme represents the payload for creating a page in Confluence.
 type PageCreatePayloadScheme struct {
-	SpaceID string                        `json:"spaceId,omitempty"` // The ID of the space of the page.
-	Status  string                        `json:"status,omitempty"`  // The status of the page.
-	Title   string                        `json:"title,omitempty"`   // The title of the page.
-	Body    *PageBodyRepresentationScheme `json:"body,omitempty"`    // The body of the page.
+	SpaceID  string                        `json:"spaceId,omitempty"`  // The ID of the space of the page.
+	Status   string                        `json:"status,omitempty"`   // The status of the page.
+	Title    string                        `json:"title,omitempty"`    // The title of the page.
+	ParentID string                        `json:"parentId,omitempty"` // the ID of the parent of the page.
+	Body     *PageBodyRepresentationScheme `json:"body,omitempty"`     // The body of the page.
 }
 
 // PageBodyRepresentationScheme represents a representation of a body in Confluence.

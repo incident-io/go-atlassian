@@ -4,13 +4,14 @@ import (
 	"context"
 	"encoding/json"
 	"errors"
+	"log"
+	"net/http"
+	"testing"
+
 	model "github.com/ctreminiom/go-atlassian/pkg/infra/models"
 	"github.com/ctreminiom/go-atlassian/service"
 	"github.com/ctreminiom/go-atlassian/service/mocks"
 	"github.com/stretchr/testify/assert"
-	"log"
-	"net/http"
-	"testing"
 )
 
 func Test_internalPageImpl_Get(t *testing.T) {
@@ -864,9 +865,10 @@ func Test_internalPageImpl_Create(t *testing.T) {
 	}
 
 	mockedPayload := &model.PageCreatePayloadScheme{
-		SpaceID: "203718658",
-		Status:  "current",
-		Title:   "Page create title test",
+		SpaceID:  "203718658",
+		Status:   "current",
+		Title:    "Page create title test",
+		ParentID: "123456789",
 		Body: &model.PageBodyRepresentationScheme{
 			Representation: "atlas_doc_format",
 			Value:          string(mockedBodyValue),
