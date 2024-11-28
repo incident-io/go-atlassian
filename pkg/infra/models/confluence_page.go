@@ -75,6 +75,7 @@ type PageVersionScheme struct {
 type PageBodyScheme struct {
 	Storage        *PageBodyRepresentationScheme `json:"storage,omitempty"`          // The storage body.
 	AtlasDocFormat *PageBodyRepresentationScheme `json:"atlas_doc_format,omitempty"` // The Atlas doc format body.
+	ExportView     *PageBodyRepresentationScheme `json:"export_view,omitempty"`      // The export view format body.
 }
 
 // PageCreatePayloadScheme represents the payload for creating a page in Confluence.
