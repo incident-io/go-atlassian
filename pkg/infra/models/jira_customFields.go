@@ -356,3 +356,22 @@ func (c *CustomFields) Cascading(customFieldID, parent, child string) error {
 	c.Fields = append(c.Fields, fieldsNode)
 	return nil
 }
+
+func (c *CustomFields) TextArea(customFieldID string, textArea *CommentNodeScheme) error {
+	if len(customFieldID) == 0 {
+		return ErrNoFieldIDError
+	}
+
+	if textArea == nil {
+		return ErrNoTextTypeError
+	}
+
+	var textAreaNode = map[string]interface{}{}
+	textAreaNode[customFieldID] = textArea
+
+	var fieldsNode = map[string]interface{}{}
+	fieldsNode["fields"] = textAreaNode
+
+	c.Fields = append(c.Fields, fieldsNode)
+	return nil
+}
