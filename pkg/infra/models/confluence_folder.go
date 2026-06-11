@@ -1,5 +1,19 @@
 package models
 
+// FolderScheme represents a folder in Confluence.
+type FolderScheme struct {
+	ID         string `json:"id,omitempty"`
+	Type       string `json:"type,omitempty"`
+	Status     string `json:"status,omitempty"`
+	Title      string `json:"title,omitempty"`
+	ParentID   string `json:"parentId,omitempty"`
+	ParentType string `json:"parentType,omitempty"`
+	AuthorID   string `json:"authorId,omitempty"`
+	OwnerID    string `json:"ownerId,omitempty"`
+	CreatedAt  string `json:"createdAt,omitempty"`
+	SpaceID    string `json:"spaceId,omitempty"`
+}
+
 // FolderDescendantChunkScheme represents a chunk of folder descendants in Confluence.
 type FolderDescendantChunkScheme struct {
 	Results []*FolderDescendantScheme         `json:"results,omitempty"` // The descendants in the chunk.

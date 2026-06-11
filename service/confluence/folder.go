@@ -9,6 +9,13 @@ import (
 // Use it to navigate the contents of a folder.
 type FolderConnector interface {
 
+	// Get returns a specific folder.
+	//
+	// GET /wiki/api/v2/folders/{id}
+	//
+	// https://developer.atlassian.com/cloud/confluence/rest/v2/api-group-folder/#api-folders-id-get
+	Get(ctx context.Context, folderID int) (*models.FolderScheme, *models.ResponseScheme, error)
+
 	// Descendants returns all descendants of a folder, at any depth.
 	//
 	// Descendants are mixed content types (page, folder, whiteboard, database, embed).
