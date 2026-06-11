@@ -20,6 +20,15 @@ type FolderService struct {
 	internalClient confluence.FolderConnector
 }
 
+// Get returns a specific folder.
+//
+// GET /wiki/api/v2/folders/{id}
+//
+// https://developer.atlassian.com/cloud/confluence/rest/v2/api-group-folder/#api-folders-id-get
+func (f *FolderService) Get(ctx context.Context, folderID int) (*model.FolderScheme, *model.ResponseScheme, error) {
+	return f.internalClient.Get(ctx, folderID)
+}
+
 // Descendants returns all descendants of a folder, at any depth.
 //
 // Descendants are mixed content types (page, folder, whiteboard, database, embed).
@@ -37,6 +46,28 @@ func (f *FolderService) Descendants(ctx context.Context, folderID int, depth int
 
 type internalFolderImpl struct {
 	c service.Connector
+}
+
+func (i *internalFolderImpl) Get(ctx context.Context, folderID int) (*model.FolderScheme, *model.ResponseScheme, error) {
+
+	if folderID == 0 {
+		return nil, nil, model.ErrNoFolderIDError
+	}
+
+	endpoint := fmt.Sprintf("wiki/api/v2/folders/%v", folderID)
+
+	request, err := i.c.NewRequest(ctx, http.MethodGet, endpoint, "", nil)
+	if err != nil {
+		return nil, nil, err
+	}
+
+	folder := new(model.FolderScheme)
+	response, err := i.c.Call(request, folder)
+	if err != nil {
+		return nil, response, err
+	}
+
+	return folder, response, nil
 }
 
 func (i *internalFolderImpl) Descendants(ctx context.Context, folderID int, depth int, cursor string, limit int) (*model.FolderDescendantChunkScheme, *model.ResponseScheme, error) {
