@@ -10,7 +10,7 @@ type FolderScheme struct {
 	ParentType string `json:"parentType,omitempty"`
 	AuthorID   string `json:"authorId,omitempty"`
 	OwnerID    string `json:"ownerId,omitempty"`
-	CreatedAt  string `json:"createdAt,omitempty"`
+	CreatedAt  int64  `json:"createdAt,omitempty"` // Epoch millis; v2 returns a number.
 	SpaceID    string `json:"spaceId,omitempty"`
 }
 
